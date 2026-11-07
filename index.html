@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ডেটা এবং ডেটা সায়েন্স পরিচিতি | Seerat Academy Foundation Interactive E-Book</title>
+  <meta name="description" content="ডেটা এবং ডেটা সায়েন্স পরিচিতি (Introduction to Data and Data Science) — Written and Published by Ihtishamul Haque Naeem, Chairman, Seerat Academy Foundation.">
+  <meta name="author" content="Ihtishamul Haque Naeem, Chairman, Seerat Academy Foundation">
+  <style>
+    :root {
+      --navy: #0f172a;
+      --royal: #1d4ed8;
+      --teal: #0d9488;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --bg-soft: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--bg-soft);
+      color: var(--text-main);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+    /* Top Brand Bar */
+    .top-bar {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--royal) 100%);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .brand-title { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.3px; }
+    .brand-title a { color: #fde68a; text-decoration: none; }
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .progress-bar-bg {
+      width: 140px;
+      height: 8px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+    /* Main Layout */
+    .ebook-container {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: calc(100vh - 56px);
+    }
+    /* Sidebar Navigation */
+    .sidebar {
+      background: var(--card-bg);
+      border-right: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+    .sidebar h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--teal);
+      padding-bottom: 0.35rem;
+    }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 0.35rem; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #eff6ff;
+      color: var(--royal);
+      font-weight: 600;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      display: inline-block;
+    }
+    .status-dot.done { background: var(--teal); }
+    /* Content Area */
+    .content-area {
+      padding: 2rem 2.5rem;
+      max-width: 960px;
+    }
+    /* Cover Hero */
+    .cover-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 60%, var(--teal) 100%);
+      color: #fff;
+      padding: 3rem 2.5rem;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+      border-left: 8px solid #fbbf24;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.2);
+      color: #fde68a;
+      border: 1px solid #fbbf24;
+      padding: 0.25rem 0.85rem;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .cover-hero h1 { font-size: 2.2rem; line-height: 1.3; margin-bottom: 0.5rem; }
+    .cover-hero h2 { font-size: 1.25rem; font-weight: 400; color: #e2e8f0; margin-bottom: 1.5rem; }
+    .author-box {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-top: 1.5rem;
+    }
+    .author-box p { margin-bottom: 0.25rem; font-size: 0.95rem; }
+    .author-box a { color: #fde68a; font-weight: 600; }
+    /* Chapter Cards */
+    .chapter-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .chapter-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .chapter-meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+    .badge-num {
+      background: var(--royal);
+      color: #fff;
+      padding: 0.2rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .badge-time {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      padding: 0.2rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .chapter-header h2 {
+      color: var(--navy);
+      font-size: 1.65rem;
+      margin-bottom: 0.5rem;
+    }
+    .disclaimer-quote {
+      background: #fffbeb;
+      border-left: 4px solid var(--gold);
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: #92400e;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    h3 {
+      color: var(--royal);
+      font-size: 1.25rem;
+      margin: 1.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h4 {
+      color: var(--navy);
+      font-size: 1.08rem;
+      margin: 1.15rem 0 0.45rem;
+    }
+    p { margin-bottom: 0.85rem; }
+    ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+    li { margin-bottom: 0.35rem; }
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+    th {
+      background: var(--navy);
+      color: #fff;
+      text-align: left;
+      padding: 0.75rem 1rem;
+    }
+    td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    tr:nth-child(even) td { background: #f8fafc; }
+    /* Callout Boxes */
+    .pro-tip-box {
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      border-left: 5px solid var(--teal);
+      padding: 1.1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.25rem 0;
+    }
+    .pro-tip-title {
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .formula-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 5px solid var(--royal);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+    /* Code Block with Copy */
+    .code-container {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+    .code-header {
+      background: #1e293b;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+    .copy-btn {
+      background: var(--royal);
+      color: #fff;
+      border: none;
+      padding: 0.25rem 0.7rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.78rem;
+    }
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    /* Interactive Q&A Details */
+    details.qa-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.65rem;
+      background: #fafafa;
+    }
+    details.qa-item summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--navy);
+    }
+    details.qa-item .qa-ans {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border);
+      color: var(--teal);
+      font-weight: 500;
+    }
+    /* Chapter Complete Button */
+    .complete-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: opacity 0.2s;
+    }
+    .complete-btn.completed { background: var(--success); }
+    /* Interactive Quiz Widget */
+    .quiz-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      background: #fff;
+    }
+    .quiz-options button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.65rem 1rem;
+      margin: 0.4rem 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #f8fafc;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .quiz-options button:hover { background: #eff6ff; border-color: var(--royal); }
+    .quiz-feedback { margin-top: 0.6rem; font-weight: 600; font-size: 0.9rem; }
+    /* Searchable Glossary */
+    .glossary-search {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: inherit;
+    }
+    /* SVG Diagram Wrapper */
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      margin: 1.25rem 0;
+    }
+    .diagram-caption {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 900px) {
+      .ebook-container { grid-template-columns: 1fr; }
+      .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+      .content-area { padding: 1.25rem; }
+    }
+    @media print {
+      .top-bar, .sidebar, .complete-btn, .copy-btn { display: none !important; }
+      .ebook-container { display: block; }
+      .content-area { max-width: 100%; padding: 0; }
+      .chapter-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      details.qa-item { open: true; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation & Progress Bar -->
+  <header class="top-bar">
+    <div class="brand-title">
+      📘 <a href="https://seeratfoundation.com/" target="_blank" rel="noopener">Seerat Academy Foundation</a> | ডেটা এবং ডেটা সায়েন্স পরিচিতি
+    </div>
+    <div class="progress-wrap">
+      <span id="progress-text">অগ্রগতি: 0/6 অধ্যায়</span>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <button onclick="window.print()" style="background:#fbbf24;color:#0f172a;border:none;padding:0.3rem 0.7rem;border-radius:5px;font-weight:700;cursor:pointer;">🖨️ Print / Save PDF</button>
+    </div>
+  </header>
+
+  <div class="ebook-container">
+    <!-- Sidebar TOC -->
+    <aside class="sidebar">
+      <h3>সূচিপত্র (Table of Contents)</h3>
+      <ul class="nav-list">
+        <li><a href="#intro" class="nav-link"><span>🏠 বই পরিচিতি ও নির্দেশিকা</span></a></li>
+        <li><a href="#chapter-1" class="nav-link"><span>১. ডেটা কী? (What Is Data?)</span><span class="status-dot" id="dot-1"></span></a></li>
+        <li><a href="#chapter-2" class="nav-link"><span>২. ডেটা সায়েন্স কী?</span><span class="status-dot" id="dot-2"></span></a></li>
+        <li><a href="#chapter-3" class="nav-link"><span>৩. ডেটা সায়েন্স প্রক্রিয়া</span><span class="status-dot" id="dot-3"></span></a></li>
+        <li><a href="#chapter-4" class="nav-link"><span>৪. অ্যানালিটিক্সের চারটি ধরন</span><span class="status-dot" id="dot-4"></span></a></li>
+        <li><a href="#chapter-5" class="nav-link"><span>৫. মেশিন লার্নিংয়ের ধারণা</span><span class="status-dot" id="dot-5"></span></a></li>
+        <li><a href="#chapter-6" class="nav-link"><span>৬. টুলস এবং ক্যারিয়ার রোল</span><span class="status-dot" id="dot-6"></span></a></li>
+        <li><a href="#final-quiz" class="nav-link"><span>🎯 ইন্টারঅ্যাকটিভ কুইজ</span></a></li>
+        <li><a href="#glossary" class="nav-link"><span>📖 সার্চযোগ্য শব্দকোষ</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Reading Area -->
+    <main class="content-area">
+
+      <!-- Cover & Front Matter -->
+      <section class="cover-hero" id="intro">
+        <span class="cover-badge">PREMIUM INTERACTIVE BANGLA E-BOOK</span>
+        <h1>ডেটা এবং ডেটা সায়েন্স পরিচিতি</h1>
+        <h2>Introduction to Data and Data Science — স্বতন্ত্র টপিক নোটস ও ব্যবহারিক গাইড</h2>
+        <div class="author-box">
+          <p><strong>Written and Published by</strong></p>
+          <p style="font-size:1.15rem;font-weight:700;color:#fde68a;">Ihtishamul Haque Naeem</p>
+          <p>Chairman, Seerat Academy Foundation</p>
+          <p><strong>Publishing Platform:</strong> Seerat Academy Foundation | <strong>Website:</strong> <a href="https://seeratfoundation.com/" target="_blank" rel="noopener">https://seeratfoundation.com/</a></p>
+        </div>
+      </section>
+
+      <!-- README / Course Overview Section -->
+      <section class="chapter-section">
+        <div class="chapter-header">
+          <h2>বইটি সম্পর্কে ও অধ্যয়ন নির্দেশিকা (README & Study Guide)</h2>
+        </div>
+        <div class="disclaimer-quote">
+          <strong>স্বতন্ত্র নোট ডিসক্লেইমার:</strong> এই নোটগুলো কোর্সের শিরোনামে উল্লেখিত বিষয়বস্তুকে কেন্দ্র করে সাধারণ বিষয়ভিত্তিক জ্ঞান থেকে রচিত। এগুলো <strong>365 Data Science</strong> কোর্সের নোট <strong>নয়</strong>। ওই প্ল্যাটফর্মের কোনো লেসন, ভিডিও, ট্রান্সক্রিপ্ট, স্লাইড বা কুইজ এখানে ব্যবহার করা হয়নি এবং কোর্সটিতে কী শেখানো হয় তা এই নোটগুলোতে প্রদর্শিত হয়নি।
+        </div>
+        <h3>মূল তথ্য (Information)</h3>
+        <ul>
+          <li><strong>সংশ্লিষ্ট কোর্সের শিরোনাম (Related course title):</strong> Introduction to Data and Data Science</li>
+          <li><strong>পাবলিক কোর্স লিংক (Public course link):</strong> <a href="https://learn.365datascience.com/courses/introduction-to-data-and-data-science/" target="_blank" rel="noopener">https://learn.365datascience.com/courses/introduction-to-data-and-data-science/</a></li>
+          <li><strong>লাইব্রেরিতে তালিকাভুক্ত প্রশিক্ষকগণ (Instructors listed in the library):</strong> Martin Ganchev, Iliya Valchanov</li>
+          <li><strong>এই ফোল্ডারে থাকা টপিকের সংখ্যা (Topics in this folder):</strong> 6</li>
+          <li><strong>রচনার তারিখ (Date written):</strong> 2026-11-05</li>
+          <li><strong>টপিকের সংখ্যা (Topic count):</strong> স্বাধীনভাবে নির্বাচন করা হয়েছে, তাই এটি কোনো কোর্সের লেসন সংখ্যার সাথে মেলে না।</li>
+        </ul>
+        <h3>শিখনফল (Learning Outcomes) ও প্রস্তাবিত অধ্যয়ন ক্রম (Recommended Study Sequence)</h3>
+        <p>এই বইটি অধ্যয়নের পর আপনি ডেটার প্রধান ধরন বর্ণনা করতে পারবেন; ডেটা সায়েন্স কীভাবে অ্যানালাইসিস, BI, ML ও AI-এর সাথে সম্পর্কিত তা ব্যাখ্যা করতে পারবেন; প্রশ্ন থেকে ফলাফল পর্যন্ত একটি ডেটা প্রজেক্ট অনুসরণ করতে পারবেন; সঠিক ধরনের অ্যানালিটিক্স বেছে নিতে পারবেন; মেশিন লার্নিংয়ের মৌলিক ধারণা ব্যাখ্যা করতে পারবেন এবং সঠিক টুল ও পরবর্তী শেখার পরিকল্পনা করতে পারবেন।</p>
+        <ol>
+          <li>টপিক ১ থেকে ৪ ক্রমানুসারে পড়ুন। প্রতিটি টপিক আগেরটির ওপর ভিত্তি করে তৈরি।</li>
+          <li>উত্তর দেখার আগে সমাধানকৃত উদাহরণগুলো (worked examples) নিজে চেষ্টা করুন।</li>
+          <li>মৌলিক ধারণাগুলো স্পষ্ট মনে হলে টপিক ৫ এবং ৬ পড়ুন।</li>
+          <li>কয়েক দিন পর না দেখে স্ব-মূল্যায়ন প্রশ্নগুলোর উত্তর দিন।</li>
+          <li>দ্রুত রিভিশনের জন্য Quick Revision Notes ব্যবহার করুন।</li>
+        </ol>
+      </section>
+
+      <!-- CHAPTER 1 -->
+      <section class="chapter-section" id="chapter-1">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ১ (Topic 001)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ২৫–৩০ মিনিট (Estimate)</span>
+          </div>
+          <h2>ডেটা কী? (What Is Data?)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. টপিক ওভারভিউ ও শিখন উদ্দেশ্য (Overview & Objectives)</h3>
+        <p>Data (উপাত্ত বা ডেটা) হলো লিপিবদ্ধ তথ্য বা ঘটনা (recorded facts)। একটি প্রাইস ট্যাগ, সেন্সর রিডিং, গ্রাহকের রিভিউ এবং একটি ছবি—সবই ডেটা হতে পারে। আপনার সবার আগে এই ধারণাটি প্রয়োজন কারণ পরবর্তী প্রতিটি ধাপ এর ওপর নির্ভর করে। আপনার কাছে কোন ধরনের ডেটা আছে তা না জানলে সেটি সংরক্ষণ (store), পরিষ্কার (clean) বা বিশ্লেষণ (analyse) করার সঠিক পথ আপনি বেছে নিতে পারবেন না।</p>
+        <ul>
+          <li>Data (ডেটা), Information (তথ্য) এবং Knowledge (জ্ঞান)-এর পার্থক্য ব্যাখ্যা করা।</li>
+          <li>Structured data এবং Unstructured data আলাদা করে চেনা।</li>
+          <li>Quantitative data এবং Qualitative data আলাদা করা।</li>
+          <li>"Big data (বিগ ডেটা)" বলতে কী বোঝায় তা ব্যাখ্যা করা এবং ডেটার মানের মৌলিক সমস্যা (data quality problems) চিহ্নিত করা।</li>
+        </ul>
+
+        <h3>২. মূল ধারণা (Key Concepts)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concept (ধারণা)</th><th>What it means (অর্থ)</th><th>Why it matters (কেন গুরুত্বপূর্ণ)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Data</strong></td><td>লিপিবদ্ধ কাঁচা ঘটনা (Raw recorded facts)</td><td>সব বিশ্লেষণের প্রাথমিক উপাদান</td></tr>
+              <tr><td><strong>Information</strong></td><td>প্রেক্ষাপট ও অর্থ যুক্ত করা ডেটা</td><td>একটি সাধারণ প্রশ্নের উত্তর দেয়</td></tr>
+              <tr><td><strong>Knowledge</strong></td><td>তথ্যের ওপর ভিত্তি করে গড়ে ওঠা উপলব্ধি</td><td>সঠিক সিদ্ধান্ত নিতে পথ দেখায়</td></tr>
+              <tr><td><strong>Dataset</strong></td><td>পরস্পর সম্পর্কিত ডেটার একটি সংগ্রহ</td><td>সাধারণত যে এককটি নিয়ে কাজ করা হয়</td></tr>
+              <tr><td><strong>Data quality</strong></td><td>ডেটা তার উদ্দেশ্য পূরণে কতটা উপযুক্ত</td><td>নিম্নমানের ডেটা ভুল সিদ্ধান্তে নিয়ে যায়</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Illustrative SVG Diagram -->
+        <div class="diagram-box">
+          <svg viewBox="0 0 650 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="20" width="180" height="70" rx="10" fill="#1e293b"/>
+            <text x="100" y="50" fill="#fff" text-anchor="middle" font-weight="bold" font-size="14">DATA (ডেটা)</text>
+            <text x="100" y="72" fill="#94a3b8" text-anchor="middle" font-size="11">2026-03-14, Blue Shirt, 3, 1500</text>
+            <path d="M195 55 L230 55" stroke="#0d9488" stroke-width="3" marker-end="url(#arrow)"/>
+            <rect x="235" y="20" width="180" height="70" rx="10" fill="#1d4ed8"/>
+            <text x="325" y="50" fill="#fff" text-anchor="middle" font-weight="bold" font-size="14">INFORMATION (তথ্য)</text>
+            <text x="325" y="72" fill="#dbeafe" text-anchor="middle" font-size="11">+ Context (১,৫০০ টাকায় ৩টি বিক্রি)</text>
+            <path d="M420 55 L455 55" stroke="#0d9488" stroke-width="3"/>
+            <rect x="460" y="20" width="180" height="70" rx="10" fill="#0d9488"/>
+            <text x="550" y="50" fill="#fff" text-anchor="middle" font-weight="bold" font-size="14">KNOWLEDGE (জ্ঞান)</text>
+            <text x="550" y="72" fill="#ccfbf1" text-anchor="middle" font-size="11">+ Pattern (ঈদের আগে বেশি অর্ডার)</text>
+          </svg>
+          <div class="diagram-caption">[অতিরিক্ত শিক্ষামূলক চিত্র / Illustrative Diagram]: ডেটা থেকে তথ্য এবং জ্ঞানে রূপান্তর প্রক্রিয়া</div>
+        </div>
+
+        <h3>৩. বিস্তারিত ব্যাখ্যা (Detailed Explanation)</h3>
+        <h4>ডেটা থেকে জ্ঞান (From data to knowledge)</h4>
+        <p>একটি ছোট দোকানের কথা ভাবুন: <strong>Data:</strong> <code>2026-03-14, Blue Shirt, 3, 1500</code>। <strong>Information:</strong> "আমরা ১৪ মার্চ মোট ১,৫০০ টাকায় ৩টি নীল শার্ট বিক্রি করেছি।" <strong>Knowledge:</strong> "ঈদের আগের সপ্তাহে নীল শার্ট সবচেয়ে ভালো বিক্রি হয়, তাই আমাদের আগে থেকেই আরও বেশি অর্ডার দিয়ে রাখা উচিত।" কাঁচা লাইনটি একা সামান্যই অর্থ বহন করে। প্রেক্ষাপট (Context) এটিকে তথ্যে এবং অসংখ্য রেকর্ডের প্যাটার্ন এটিকে জ্ঞানে রূপান্তরিত করে।</p>
+
+        <h4>Structured, Unstructured এবং Semi-structured ডেটা</h4>
+        <p><strong>Structured data (কাঠামোবদ্ধ ডেটা):</strong> সারি (rows) এবং কলামের (columns) ভেতর সুন্দরভাবে এঁটে যায়। প্রতিটি কলামে এক ধরনের মান থাকে (যেমন সেলস টেবিল)। এটি সাজানো (sort), ছাঁকা (filter) ও গণনা (count) করা সহজ।<br>
+        <strong>Unstructured data (অকাঠামোবদ্ধ ডেটা):</strong> কোনো নির্দিষ্ট টেবিল আকৃতি নেই। ইমেইল, ছবি, অডিও, ভিডিও এবং সোশ্যাল মিডিয়া পোস্ট এর অন্তর্ভুক্ত। এতে সমৃদ্ধ অর্থ থাকলেও বিশ্লেষণ করতে বেশি পরিশ্রম লাগে।<br>
+        <strong>Semi-structured data (আধা-কাঠামোবদ্ধ ডেটা):</strong> এই দুইয়ের মাঝামাঝি। একটি <code>JSON</code> ফাইলে লেবেল ও কিছু শৃঙ্খলা থাকে, কিন্তু কঠোর টেবিল থাকে না।</p>
+
+        <h4>Quantitative এবং Qualitative ডেটা</h4>
+        <ul>
+          <li><strong>Quantitative data (পরিমাণগত/সংখ্যাসূচক):</strong> কোনো কিছু পরিমাপ করে। <strong>Discrete (বিচ্ছিন্ন):</strong> গণনা করা হয়, যেমন ৩টি অর্ডার (৩.৫টি অর্ডার হতে পারে না)। <strong>Continuous (অবিচ্ছিন্ন):</strong> পরিমাপ করা হয়, যেমন <code>72.4 kg</code>।</li>
+          <li><strong>Qualitative data (গুণগত/শ্রেণিবাচক):</strong> শ্রেণি বা গুণ বর্ণনা করে। <strong>Nominal (ক্রমহীন):</strong> কোনো নির্দিষ্ট ক্রম নেই, যেমন রঙ বা শহর। <strong>Ordinal (ক্রমবাচক):</strong> নির্দিষ্ট ক্রম আছে, যেমন—<code>poor, good, excellent</code>।</li>
+          <li><em>গুরুত্বপূর্ণ নোট:</em> সংখ্যা হলেই তা সবসময় quantitative হয় না। একটি ফোন নম্বর ডিজিট দিয়ে তৈরি হলেও এর গড় (average) অর্থহীন; এটি একটি লেবেল (label)।</li>
+        </ul>
+
+        <h4>Big Data এবং Data Quality</h4>
+        <p><strong>Big data:</strong> সাধারণ টুলগুলোর পক্ষে সঠিকভাবে সামলানোর জন্য অতিরিক্ত বড়, দ্রুতগতির বা বৈচিত্র্যময় ডেটা। তিনটি V (Three Vs): <strong>Volume</strong> (আয়তন), <strong>Velocity</strong> (গতি) এবং <strong>Variety</strong> (বৈচিত্র্য)। দোকানের বাৎসরিক বিক্রির শিট বিগ ডেটা নয়, কিন্তু প্রতি মিনিটে আসা লক্ষ লক্ষ কার্ড পেমেন্ট বিগ ডেটা হতে পারে। (অতিরিক্ত নোট: কোনো কোনো লেখক <strong>Veracity</strong> বা বিশ্বাসযোগ্যতা এবং <strong>Value</strong> যুক্ত করেন)।</p>
+        <p><strong>Data quality (ডেটার মান যাচাইয়ের ৫টি পয়েন্ট):</strong> ১. <strong>Accuracy</strong> (এটি কি সঠিক?), ২. <strong>Completeness</strong> (মান কি অনুপস্থিত আছে?), ৩. <strong>Consistency</strong> (একই বিষয় কি একইভাবে লিপিবদ্ধ?), ৪. <strong>Timeliness</strong> (এটি কি যথেষ্ট সাম্প্রতিক?), ৫. <strong>Validity</strong> (এটি কি প্রত্যাশিত ফরম্যাট ও সীমা অনুসরণ করে?)।</p>
+
+        <h3>৪. বাস্তব উদাহরণ ও ধাপে ধাপে প্রক্রিয়া (Practical Example & Step-by-Step)</h3>
+        <p><strong>উদাহরণ (একটি ক্লিনিকের ডেটা বাছাই):</strong> একটি ক্লিনিক রোগীদের বয়স, রক্তচাপ, ডাক্তারদের নোট এবং এক্স-রে ছবি রাখে। বয়স ও রক্তচাপ হলো structured এবং quantitative; ডাক্তারদের নোট unstructured text; আর এক্স-রে হলো unstructured images।</p>
+        <p><strong>নতুন ডেটাসেট বোঝার ৫টি ধাপ:</strong> ১. উৎস খুঁজে বের করুন (কে এবং কেন সংগ্রহ করেছে), ২. প্রথম কয়েকটি সারি দেখুন, ৩. প্রতিটি কলামের ধরন চিহ্নিত করুন, ৪. অনুপস্থিত মান (missing values) গণনা করুন, ৫. অস্বাভাবিক মান পরীক্ষা করুন (যেমন গ্রাহকের বয়স ২০০ লেখা থাকা একটি ভুল)।</p>
+
+        <h3>৫. পরিভাষা, সাধারণ ভুল ও বাস্তব প্রয়োগ (Terminology, Mistakes & Applications)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>Simple Meaning</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Record</strong></td><td>ডেটার একটি সারি (One row of data)</td><td>একটি বিক্রয় লেনদেন (One sale)</td></tr>
+              <tr><td><strong>Field</strong></td><td>ডেটার একটি কলাম (One column of data)</td><td>বিক্রয়ের তারিখ (Sale date)</td></tr>
+              <tr><td><strong>Metadata</strong></td><td>ডেটা সম্পর্কিত ডেটা (Data about data)</td><td>ছবিটি কখন তোলা হয়েছে</td></tr>
+              <tr><td><strong>Missing value</strong></td><td>যেখানে মান থাকার কথা সেখানে ফাঁকা থাকা</td><td>বয়স এন্ট্রি না করা</td></tr>
+              <tr><td><strong>Outlier</strong></td><td>অন্য সব মান থেকে অনেক দূরের মান</td><td>এক বারে ১,০০০টি শার্ট বিক্রি</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>সাধারণ ভুল:</strong> সব সংখ্যাকে পরিমাপ ধরে নেওয়া (যেমন Customer ID); দেখতে পরিপাটি হলেই ডেটা বিশ্বাস করা; ডেটা কীভাবে সংগৃহীত হয়েছে তা উপেক্ষা করা (কেবল শহরের জরিপ সবার কথা বলে না); যেকোনো বড় ফাইলকেই "বিগ ডেটা" বলা।<br>
+        <strong>বাস্তব প্রয়োগ:</strong> ব্যাংকে অস্বাভাবিক পেমেন্ট শনাক্তকরণ, হাসপাতালে রেকর্ড ও ছবির সমন্বয়ে চিকিৎসা, কারখানায় সেন্সর ডেটায় মেশিনের ত্রুটি ধরা এবং দোকানে স্টক পরিকল্পনা।</p>
+
+        <h3>৬. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions — Click to Reveal)</h3>
+        <details class="qa-item"><summary>১. ডেটা এবং তথ্যের (data and information) মধ্যে পার্থক্য কী?</summary><div class="qa-ans">উত্তর: ডেটা হলো কাঁচা ঘটনা বা ফ্যাক্টস (raw facts)। আর তথ্য (Information) হলো প্রেক্ষাপট ও অর্থযুক্ত ডেটা।</div></details>
+        <details class="qa-item"><summary>২. একজন গ্রাহকের রিভিউ কি structured নাকি unstructured ডেটা?</summary><div class="qa-ans">উত্তর: Unstructured, কারণ এটি মুক্ত টেক্সট (free text) এবং এর কোনো নির্দিষ্ট টেবিল আকৃতি নেই।</div></details>
+        <details class="qa-item"><summary>৩. দোকানে জুতার সাইজ কি discrete নাকি continuous ডেটা?</summary><div class="qa-ans">উত্তর: সাধারণত discrete, কারণ দোকানগুলো নির্দিষ্ট কিছু সাইজের জুতাই বিক্রি করে।</div></details>
+        <details class="qa-item"><summary>৪. ফোন নম্বরের গড় (average) বের করা কেন অর্থহীন?</summary><div class="qa-ans">উত্তর: ফোন নম্বর হলো লেবেল বা পরিচয়চিহ্ন, তাই এগুলোর ওপর গাণিতিক হিসাব করার কোনো অর্থ নেই।</div></details>
+        <details class="qa-item"><summary>৫. ডেটার মান যাচাইয়ের তিনটি পরীক্ষার (data quality checks) নাম বলুন।</summary><div class="qa-ans">উত্তর: Accuracy, Completeness, Consistency, Timeliness এবং Validity—এগুলোর যেকোনো তিনটি।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(1, this)">✓ অধ্যায় ১ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- CHAPTER 2 -->
+      <section class="chapter-section" id="chapter-2">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ২ (Topic 002)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ২৫–৩০ মিনিট (Estimate)</span>
+          </div>
+          <h2>ডেটা সায়েন্স কী? (What Is Data Science?)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. টপিক ওভারভিউ ও শিখন উদ্দেশ্য</h3>
+        <p>Data science মানে হলো প্রশ্নের উত্তর খুঁজতে এবং সিদ্ধান্ত গ্রহণে সহায়তা করতে ডেটা ব্যবহার করা। এটি তিনটি দক্ষতার সমন্বয় ঘটায়: গণিত ও পরিসংখ্যান (maths and statistics), প্রোগ্রামিং (programming), এবং বিষয়ভিত্তিক জ্ঞান (subject knowledge)। এই অধ্যায় শেষে আপনি সহজ ভাষায় ডেটা সায়েন্স ব্যাখ্যা করতে পারবেন, তিনটি দক্ষতার নাম বলতে পারবেন, Data analysis, BI, ML এবং AI থেকে একে আলাদা করতে পারবেন এবং ব্যবসায়িক প্রশ্নের জন্য সঠিক ক্ষেত্র বেছে নিতে পারবেন।</p>
+
+        <h3>২. মূল ধারণা (Key Concepts)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concept</th><th>What it means</th><th>Typical question</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Data analysis</strong></td><td>প্রয়োজনীয় তথ্য খুঁজতে ডেটা পরীক্ষা করা</td><td>গত মাসে বিক্রি কেন কমে গিয়েছিল?</td></tr>
+              <tr><td><strong>Business intelligence (BI)</strong></td><td>নিয়মিত ট্র্যাকিংয়ের জন্য রিপোর্ট ও ড্যাশবোর্ড</td><td>এই সপ্তাহে আমাদের পারফরম্যান্স কেমন?</td></tr>
+              <tr><td><strong>Data science</strong></td><td>মডেল ও বিশ্লেষণের মাধ্যমে ডেটা থেকে শেখার বৃহত্তর অনুশীলন</td><td>আগামী মাসে কোন গ্রাহকরা চলে যেতে পারেন?</td></tr>
+              <tr><td><strong>Machine learning (ML)</strong></td><td>অ্যালগরিদম যা ডেটা থেকে প্যাটার্ন শেখে</td><td>এই ইমেইলটি কি স্প্যাম?</td></tr>
+              <tr><td><strong>Artificial intelligence (AI)</strong></td><td>মানুষের বুদ্ধিমত্তার সাথে যুক্ত কাজ করতে পারা সিস্টেম</td><td>এই সফটওয়্যারটি কি একটি প্রশ্ন বুঝতে পারে?</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>৩. বিস্তারিত ব্যাখ্যা ও বাস্তব উদাহরণ</h3>
+        <p><strong>তিনটি দক্ষতার ক্ষেত্র:</strong> ১. <strong>Maths and statistics</strong> (অনিশ্চয়তা পরিমাপ ও কাকতালীয় ঘটনা থেকে বাঁচা), ২. <strong>Programming</strong> (হাতের চেয়ে অনেক বেশি ডেটা সামলানো), ৩. <strong>Subject knowledge</strong> (কোন প্রশ্ন গুরুত্বপূর্ণ এবং উত্তর বাস্তবসম্মত কি না তা বোঝা)।<br>
+        <strong>ক্ষেত্রগুলোর সম্পর্ক:</strong> <strong>AI</strong> হলো সবচেয়ে বিস্তৃত ধারণা। <strong>Machine learning</strong> হলো AI তৈরির একটি উপায় যেখানে সিস্টেম উদাহরণ থেকে শেখে। <strong>Deep learning</strong> হলো বহু-স্তরবিশিষ্ট নিউরাল নেটওয়ার্ক নির্ভর এক ধরনের ML। <strong>Data science</strong> পরিসংখ্যান, বিশ্লেষণ ও ML ব্যবহার করে বাস্তব প্রশ্নের উত্তর দেয়। আর <strong>Analysis ও BI</strong> মূলত অতীতে কী ঘটেছে তা ব্যাখ্যা করে (পেছনে তাকায়), যেখানে Data science ও ML প্রায়ই ভবিষ্যতে কী ঘটবে তা দেখে (সামনে তাকায়)।</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>একটি অনলাইন শপের ৩টি প্রশ্ন (Question)</th><th>সবচেয়ে উপযুক্ত সমাধান (Best fit)</th></tr></thead>
+            <tbody>
+              <tr><td>গত সপ্তাহে আমাদের বিক্রি কত ছিল?</td><td>BI dashboard</td></tr>
+              <tr><td>জুন মাসে পণ্য ফেরত (returns) কেন বেড়ে গিয়েছিল?</td><td>Data analysis</td></tr>
+              <tr><td>কোন গ্রাহকরা সম্ভবত কেনাকাটা বন্ধ করে দেবেন?</td><td>Data science with a predictive model</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>ধাপে ধাপে প্রক্রিয়া (৪টি ধাপ):</strong> ১. প্রশ্নটি এক বাক্যে লিখুন, ২. এটি অতীত নাকি ভবিষ্যৎ সম্পর্কিত তা ঠিক করুন, ৩. একটি সাধারণ উত্তর বা টেবিলই যথেষ্ট কি না যাচাই করুন, ৪. মডেল কেবল তখনই ব্যবহার করুন যদি তা বাড়তি সুবিধা দেয়।<br>
+        <strong>পরিভাষা:</strong> <strong>Model</strong> (অনুমান করার সরলীকৃত প্যাটার্ন), <strong>Algorithm</strong> (কম্পিউটারের অনুসরণ করা ধাপ), <strong>Dashboard</strong> (মূল সংখ্যার স্ক্রিন), <strong>Prediction</strong> (অজানা ফলাফলের অনুমান), <strong>Insight</strong> (পদক্ষেপ নিতে সাহায্যকারী তথ্য)।<br>
+        <strong>সাধারণ ভুল ও অতিরিক্ত নোট:</strong> সব শব্দ একই অর্থে ব্যবহার করা, টুল দিয়ে শুরু করা, AI সবসময় সেরা ভাবা এবং ডোমেইন নলেজ উপেক্ষা করা। কোম্পানিভেদে চাকরির পদবি (Job titles) ভিন্ন হতে পারে, তাই পদবি না দেখে কাজের দায়িত্ব (duties) পড়ুন।</p>
+
+        <h3>৪. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+        <details class="qa-item"><summary>১. ডেটা সায়েন্স কোন তিনটি দক্ষতার ক্ষেত্রকে একত্রিত করে?</summary><div class="qa-ans">উত্তর: গণিত ও পরিসংখ্যান (Maths and statistics), প্রোগ্রামিং (programming), এবং বিষয়ভিত্তিক জ্ঞান (subject knowledge)।</div></details>
+        <details class="qa-item"><summary>২. AI এবং মেশিন লার্নিং কীভাবে সম্পর্কিত?</summary><div class="qa-ans">উত্তর: মেশিন লার্নিং হলো AI তৈরি করার একটি উপায়।</div></details>
+        <details class="qa-item"><summary>৩. একজন ম্যানেজার প্রতিদিনের বিক্রির লাইভ ভিউ দেখতে চান। কোন ক্ষেত্রটি সবচেয়ে উপযুক্ত?</summary><div class="qa-ans">উত্তর: Business intelligence (BI), কারণ এটি নিয়মিত পর্যবেক্ষণের কাজ।</div></details>
+        <details class="qa-item"><summary>৪. বিষয়ভিত্তিক জ্ঞান (subject knowledge) কেন গুরুত্বপূর্ণ?</summary><div class="qa-ans">উত্তর: এটি দেখায় কোন প্রশ্নগুলো গুরুত্বপূর্ণ এবং প্রাপ্ত উত্তরটি বাস্তবসম্মত কি না।</div></details>
+        <details class="qa-item"><summary>৫. একটি মডেলের চেয়ে একটি সাধারণ চার্ট কেন ভালো হতে পারে?</summary><div class="qa-ans">উত্তর: এটি দ্রুততর সময়ে প্রশ্নের উত্তর দিতে পারে, খরচ কম হয় এবং ব্যাখ্যা করা সহজ হয়।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(2, this)">✓ অধ্যায় ২ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- CHAPTER 3 -->
+      <section class="chapter-section" id="chapter-3">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ৩ (Topic 003)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ৩৫–৪০ মিনিট (Estimate)</span>
+          </div>
+          <h2>ডেটা সায়েন্স প্রক্রিয়া (The Data Science Process)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. প্রজেক্টের ৭টি ধাপ ও মূল ধারণা</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concept</th><th>What it means</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Business understanding</strong></td><td>প্রকৃত সমস্যাটি কী সে বিষয়ে একমত হওয়া</td><td>অপ্রয়োজনীয় কাজ বা পণ্ডশ্রম বন্ধ করে</td></tr>
+              <tr><td><strong>Data cleaning</strong></td><td>ভুল এবং ফাঁকা ঘরগুলো ঠিক করা</td><td>ফলাফলকে সুরক্ষিত রাখে</td></tr>
+              <tr><td><strong>Exploratory data analysis (EDA)</strong></td><td>ডেটার গঠন জানতে তা পর্যবেক্ষণ করা</td><td>প্যাটার্ন এবং সমস্যাগুলো প্রকাশ করে</td></tr>
+              <tr><td><strong>Modelling</strong></td><td>ব্যাখ্যা বা পূর্বাভাসের পদ্ধতি তৈরি করা</td><td>কাঙ্ক্ষিত অনুমান বা এস্টিমেট তৈরি করে</td></tr>
+              <tr><td><strong>Deployment</strong></td><td>ফলাফলটিকে বাস্তব ব্যবহারে নিয়ে আসা</td><td>প্রকৃত ব্যবসায়িক মূল্য তৈরি করে</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>৭টি ধাপ:</strong><br>
+        <strong>Stage 1 (Define the problem):</strong> ঢালাও ইচ্ছাকে ("Improve sales") স্পষ্ট প্রশ্নে ("Predict which past customers will buy again in 30 days") রূপান্তর করুন এবং সাফল্যের মাপকাঠি ঠিক করুন।<br>
+        <strong>Stage 2 (Collect the data):</strong> ডেটাবেস, স্প্রেডশিট, জরিপ, ওয়েবসাইট বা সেন্সর থেকে ডেটা সংগ্রহ ও ব্যবহারের অনুমতি যাচাই করুন।<br>
+        <strong>Stage 3 (Clean and prepare):</strong> ডুপ্লিকেট দূর করা, ফাঁকা ঘর সামলানো, ফরম্যাট ঠিক করা এবং টেবিল যুক্ত (join) করা।<br>
+        <strong>Stage 4 (Explore the data):</strong> টেবিল ও চার্ট দিয়ে প্যাটার্ন ও অস্বাভাবিক মান খোঁজা (উদাহরণ: একটি ডেলিভারি ফার্ম কেবল রুট ও ঘণ্টার চার্ট দেখেই পিক আওয়ারে দুটি রুটের বিলম্ব ধরে ফেলে, কোনো মডেলের দরকার হয়নি)।<br>
+        <strong>Stage 5 (Build and test a model):</strong> মডেল তৈরি করে অদেখা ডেটার (unseen test data) ওপর পরীক্ষা করা।<br>
+        <strong>Stage 6 (Communicate):</strong> সহজ ভাষায় ফলাফল, নিশ্চয়তার মাত্রা ও পরবর্তী করণীয় ব্যাখ্যা করা।<br>
+        <strong>Stage 7 (Deploy and monitor):</strong> বাস্তবে চালু করা এবং সময়ের সাথে Model drift এড়াতে নজরদারি রাখা। পুরো প্রক্রিয়াটি সরলরেখা নয়, বরং একটি চক্র (loop)। (অতিরিক্ত নোট: এটি <strong>CRISP-DM</strong>-এর ৬টি ধাপেরই সরলীকৃত রূপ)।</p>
+
+        <h3>২. Python ও pandas কোড প্রদর্শনী (Code Demonstration)</h3>
+        <div class="code-container">
+          <div class="code-header">
+            <span>Python (pandas) — Finding Missing Values & Mean</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy Code</button>
+          </div>
+<pre><code>import pandas as pd
+
+sales = pd.DataFrame({
+    "day": ["Mon", "Tue", "Wed", "Thu"],
+    "units": [12, None, 9, 15],
+})
+
+print(sales["units"].isna().sum())  # counts missing values
+print(sales["units"].mean())        # averages the known values</code></pre>
+        </div>
+        <p><strong>প্রত্যাশিত আউটপুট:</strong> <code>1</code> এবং <code>12.0</code>।<br>
+        <strong>সতর্কতা:</strong> <code>mean()</code> ডিফল্টভাবে ফাঁকা ঘর (<code>None</code>) উপেক্ষা করে কেবল ৩টি জানা মান (<code>12, 9, 15</code>)-এর গড় বের করেছে।<br>
+        <strong>গুরুত্বপূর্ণ পরিভাষা:</strong> <strong>Duplicate</strong> (একই রেকর্ড দুইবার), <strong>Join</strong> (সাধারণ ফিল্ড দিয়ে টেবিল যুক্ত করা), <strong>Training data</strong> (মডেল যা থেকে শেখে), <strong>Test data</strong> (মডেল যাচাইয়ের জন্য আলাদা রাখা অদেখা ডেটা), <strong>Model drift</strong> (সময়ের সাথে মডেলের কার্যকারিতা কমে যাওয়া)।</p>
+
+        <h3>৩. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+        <details class="qa-item"><summary>১. "Improve sales" কেন একটি দুর্বল প্রজেক্ট প্রশ্ন?</summary><div class="qa-ans">উত্তর: এটি পরিমাপ করা বা একে ঘিরে পরিকল্পনা করার জন্য অতিরিক্ত ঢালাও বা অস্পষ্ট (too broad)।</div></details>
+        <details class="qa-item"><summary>২. Exploratory data analysis (EDA) কীসের জন্য করা হয়?</summary><div class="qa-ans">উত্তর: এটি ডেটার গঠন (shape), প্যাটার্ন এবং সমস্যাগুলো জানতে সাহায্য করে।</div></details>
+        <details class="qa-item"><summary>৩. অদেখা ডেটার (unseen data) ওপর কেন একটি মডেল পরীক্ষা করা উচিত?</summary><div class="qa-ans">উত্তর: এটি নতুন ক্ষেত্রে কাজ করে কি না এবং কেবল পুরনো উদাহরণ মুখস্থ করে রাখেনি তা যাচাই করার জন্য।</div></details>
+        <details class="qa-item"><summary>৪. উপরের কোডটিতে গড় (mean) কেন 12.0 হয়েছে?</summary><div class="qa-ans">উত্তর: জানা মানগুলো হলো 12, 9 এবং 15। এদের যোগফল 36, এবং 36 ÷ 3 = 12.0।</div></details>
+        <details class="qa-item"><summary>৫. বাস্তবে চালু করা (deployed) একটি মডেলকে কেন পর্যবেক্ষণে রাখতে হয়?</summary><div class="qa-ans">উত্তর: পারিপার্শ্বিক অবস্থা পরিবর্তিত হয়, তাই সময়ের সাথে এর নির্ভুলতা কমে যেতে পারে (Model drift)।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(3, this)">✓ অধ্যায় ৩ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- CHAPTER 4 -->
+      <section class="chapter-section" id="chapter-4">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ৪ (Topic 004)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ৩৫–৪০ মিনিট (Estimate)</span>
+          </div>
+          <h2>অ্যানালিটিক্সের চারটি ধরন (The Four Types of Analytics)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. চারটি ধরন ও ক্যাফের বাস্তব উদাহরণ</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type (ধরন)</th><th>Question it answers</th><th>Example</th><th>ক্যাফের উদাহরণ (A café's slow week)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Descriptive</strong></td><td>কী ঘটেছিল? (What happened?)</td><td>গত প্রান্তিকে বিক্রি ১০% বেড়েছে</td><td>আগের সপ্তাহের তুলনায় আয় ১৫% কমেছে</td></tr>
+              <tr><td><strong>Diagnostic</strong></td><td>কেন এটি ঘটেছিল? (Why?)</td><td>নতুন পণ্যের কারণে বিক্রি বেড়েছে</td><td>কাজের দিনগুলোর সকালে রাস্তার কাজ চলায় বিক্রি কমেছে</td></tr>
+              <tr><td><strong>Predictive</strong></td><td>কী ঘটার সম্ভাবনা রয়েছে? (What next?)</td><td>আগামী মাসে চাহিদা সম্ভবত বাড়বে</td><td>রাস্তার কাজ আরও ২ সপ্তাহ চলবে, তাই সকাল ধীরগতিরই থাকবে</td></tr>
+              <tr><td><strong>Prescriptive</strong></td><td>আমাদের কী করা উচিত? (What to do?)</td><td>এখনই ২০% বেশি স্টক অর্ডার করুন</td><td>সকালের ১টি শিফট সন্ধ্যায় নিন ও ডেলিভারি চালু করুন</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>সহসম্পর্ক এবং কার্যকারণ (Correlation and cause):</strong> দুটি বিষয় একে অপরের কারণ না হয়েও একসাথে বাড়তে পারে। গ্রীষ্মকালে আইসক্রিম বিক্রি এবং রোদে পোড়ার (sunburn) ঘটনা একসাথে বাড়ে, কিন্তু গরম আবহাওয়া উভয়কেই প্রভাবিত করে। কার্যকারণ পরীক্ষার একটি প্রচলিত উপায় হলো <strong>A/B testing</strong>।</p>
+
+        <h3>২. গুরুত্বপূর্ণ গাণিতিক সূত্রাবলি (Important Formulas)</h3>
+        <div class="formula-box">
+          ১. গড় (Mean): Mean = sum of all values ÷ number of values<br>
+          উদাহরণ: 120, 150, 90, 140 এবং 100-এর যোগফল = 600; মানের সংখ্যা = 5; সুতরাং Mean = 600 ÷ 5 = 120। (চরম আউটলায়ার থাকলে Median বা মধ্যমা বেশি কার্যকর)।
+        </div>
+        <div class="formula-box">
+          ২. শতকরা পরিবর্তন (Percentage change) = (new value − old value) ÷ old value × 100<br>
+          উদাহরণ: বিক্রি 200 থেকে বেড়ে 250 হলে: (250 − 200) ÷ 200 × 100 = 25%।
+        </div>
+        <p><strong>পরিভাষা:</strong> <strong>Metric</strong>, <strong>Trend</strong>, <strong>Correlation</strong>, <strong>Causation</strong>, <strong>Forecast</strong>। <strong>সাধারণ ভুল:</strong> ঈদের সপ্তাহের সাথে সাধারণ সপ্তাহের তুলনা করা (Comparing unlike periods), এবং Correlation-কে Causation ধরে নেওয়া।</p>
+
+        <h3>৩. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+        <details class="qa-item"><summary>১. "খরচ কেন বেড়েছিল?"—এই প্রশ্নের উত্তর দেয় কোন ধরনটি?</summary><div class="qa-ans">উত্তর: Diagnostic analytics।</div></details>
+        <details class="qa-item"><summary>২. "আগামী মাসে আমাদের কতজন কর্মী প্রয়োজন হবে?"—এটি কোন ধরন?</summary><div class="qa-ans">উত্তর: Predictive analytics।</div></details>
+        <details class="qa-item"><summary>৩. 10, 20 এবং 60-এর গড় (mean) বের করুন।</summary><div class="qa-ans">উত্তর: যোগফল 90, এবং 90 ÷ 3 = 30।</div></details>
+        <details class="qa-item"><summary>৪. বিক্রি 400 থেকে কমে 300 হয়েছে। শতকরা পরিবর্তন কত?</summary><div class="qa-ans">উত্তর: (300 − 400) ÷ 400 × 100 = −25%, অর্থাৎ ২৫% হ্রাস পেয়েছে।</div></details>
+        <details class="qa-item"><summary>৫. দুটি বিষয় একে অপরের কারণ না হয়েও কেন একসাথে বাড়তে পারে?</summary><div class="qa-ans">উত্তর: তৃতীয় কোনো কারণ (যেমন গরম আবহাওয়া) হয়তো উভয়কেই পরিচালিত করছে।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(4, this)">✓ অধ্যায় ৪ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- CHAPTER 5 -->
+      <section class="chapter-section" id="chapter-5">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ৫ (Topic 005)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ৪০–৪৫ মিনিট (Estimate)</span>
+          </div>
+          <h2>মেশিন লার্নিংয়ের মৌলিক ধারণা (Machine Learning Basics)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. মূল ধারণা ও মেশিন লার্নিংয়ের ৩টি ধরন</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concept</th><th>What it means</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Feature</strong></td><td>পূর্বাভাস দেওয়ার জন্য ব্যবহৃত ইনপুট</td><td>বাড়ির আয়তন, ঋণের আকার ও আয়</td></tr>
+              <tr><td><strong>Label</strong></td><td>যে উত্তরটি পূর্বাভাস দিতে হবে</td><td>বাড়ির দাম, ঋণ পরিশোধিত কি না</td></tr>
+              <tr><td><strong>Training</strong></td><td>অ্যালগরিদমকে ডেটা থেকে শিখতে দেওয়া</td><td>অতীতের বিক্রয় ডেটা অধ্যয়ন করা</td></tr>
+              <tr><td><strong>Prediction</strong></td><td>নতুন ক্ষেত্রের জন্য মডেলের আউটপুট</td><td>অনুমানকৃত দাম</td></tr>
+              <tr><td><strong>Overfitting</strong></td><td>ট্রেইনিং ডেটা অতিরিক্ত মুখস্থ করে ফেলা</td><td>বোঝার বদলে মুখস্থ করে নতুন প্রশ্নে ব্যর্থ হওয়া</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul>
+          <li><strong>Supervised learning (লেবেলযুক্ত ডেটা):</strong> ১. <strong>Classification</strong> (ক্যাটাগরি পূর্বাভাস, যেমন স্প্যাম কি না বা ঋণ পরিশোধ হবে কি না), ২. <strong>Regression</strong> (সংখ্যা পূর্বাভাস, যেমন বাড়ির দাম বা আগামীকালের তাপমাত্রা)।</li>
+          <li><strong>Unsupervised learning (লেবেলবিহীন ডেটা):</strong> সিস্টেম নিজেই কাঠামো খোঁজে, যেমন <strong>Clustering</strong> (একই ধরনের গ্রাহকদের দলবদ্ধ করা)।</li>
+          <li><strong>Reinforcement learning:</strong> কাজ চেষ্টা করে পুরস্কার বা শাস্তির মাধ্যমে শেখা (গেম খেলা, রোবোটিক্স)।</li>
+          <li><strong>Overfitting ও Data Bias:</strong> পুরনো প্রশ্ন মুখস্থ করা ছাত্রের মতো মডেল যেন কেবল ট্রেইনিং ডেটা মুখস্থ না করে, সেজন্য ডেটাকে <strong>Training set</strong> ও <strong>Test set</strong>-এ ভাগ করা হয়। এছাড়া ডেটায় <strong>Bias (পক্ষপাত)</strong> থাকলে মডেলও অন্যায্য ফলাফল দিতে পারে। (অতিরিক্ত নোট: চ্যাটবটের মতো <strong>Generative AI</strong> ডিপ লার্নিং দিয়ে নতুন টেক্সট/ছবি তৈরি করলেও সেখানেও ট্রেইনিং ডেটা, বায়াস ও টেস্টিংয়ের ধারণা প্রযোজ্য)।</li>
+        </ul>
+
+        <h3>২. Accuracy, Precision এবং Recall</h3>
+        <div class="formula-box">
+          Accuracy = correct predictions ÷ total predictions × 100<br>
+          উদাহরণ: ১০০টি পূর্বাভাসের মধ্যে ৯২টি সঠিক হলে Accuracy = 92%।
+        </div>
+        <p><strong>কেন Accuracy বিভ্রান্তিকর হতে পারে:</strong> ১০০টি ইমেইলের মধ্যে ৫টি স্প্যাম হলে একটি অলস মডেল সবগুলোকে "not spam" বললেও ৯৫% Accuracy পাবে, কিন্তু ১টিও স্প্যাম ধরতে পারবে না! তাই বিরল ঘটনার ক্ষেত্রে দেখা হয়:<br>
+        • <strong>Precision:</strong> ফ্ল্যাগ করা আইটেমগুলোর মধ্যে কতগুলো সত্যিই পজিটিভ ছিল?<br>
+        • <strong>Recall:</strong> প্রকৃত পজিটিভ আইটেমগুলোর মধ্যে কতগুলোকে খুঁজে পাওয়া গেছে? (অলস মডেলটির Recall হলো <code>0%</code>)।</p>
+
+        <h3>৩. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+        <details class="qa-item"><summary>১. নিয়ম-ভিত্তিক প্রোগ্রামিং থেকে ML কীভাবে আলাদা?</summary><div class="qa-ans">উত্তর: ML-এ সিস্টেম উদাহরণ থেকে নিয়ম শেখে। আর সাধারণ প্রোগ্রামিংয়ে মানুষ নিয়মগুলো লিখে দেয়।</div></details>
+        <details class="qa-item"><summary>২. আগামীকালের তাপমাত্রা পূর্বাভাস দেওয়া কি classification নাকি regression?</summary><div class="qa-ans">উত্তর: Regression, কারণ এর আউটপুট হলো একটি সংখ্যা।</div></details>
+        <details class="qa-item"><summary>৩. Overfitting কী?</summary><div class="qa-ans">উত্তর: যখন একটি মডেল তার ট্রেইনিং ডেটাকে এতটাই নিখুঁতভাবে মুখস্থ করে ফেলে যে নতুন ডেটায় গিয়ে ব্যর্থ হয়।</div></details>
+        <details class="qa-item"><summary>৪. কেন একটি আলাদা টেস্ট সেট রাখা হয়?</summary><div class="qa-ans">উত্তর: মডেলটি যে ডেটা আগে দেখেনি তার ওপর কেমন পারফর্ম করে তা পরিমাপ করার জন্য।</div></details>
+        <details class="qa-item"><summary>৫. একটি মডেল ১০টি প্রকৃত জালিয়াতির ঘটনার মধ্যে ৮টিকে খুঁজে পায়। এর Recall কত?</summary><div class="qa-ans">উত্তর: 8 ÷ 10 × 100 = 80%।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(5, this)">✓ অধ্যায় ৫ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- CHAPTER 6 -->
+      <section class="chapter-section" id="chapter-6">
+        <div class="chapter-header">
+          <div class="chapter-meta">
+            <span class="badge-num">অধ্যায় ৬ (Topic 006)</span>
+            <span class="badge-time">⏱️ আনুমানিক সময়: ৩৫–৪০ মিনিট (Estimate)</span>
+          </div>
+          <h2>ডেটা জগতের টুলস এবং ক্যারিয়ার রোল (Tools and Career Roles in Data)</h2>
+          <div class="disclaimer-quote">These are independent notes. They were not written from the 365 Data Science course and do not describe what its lessons teach.</div>
+        </div>
+
+        <h3>১. প্রধান টুলস এবং ক্যারিয়ার রোলসমূহ</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Main use</th><th>Good first task</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Excel</strong></td><td>ছোট টেবিলের দ্রুত বিশ্লেষণ</td><td>মাসিক বিক্রির সারসংক্ষেপ তৈরি</td></tr>
+              <tr><td><strong>SQL</strong></td><td>ডেটাবেস থেকে ডেটা নিয়ে আসা</td><td>গত মাসের শীর্ষ গ্রাহকদের খুঁজে বের করা</td></tr>
+              <tr><td><strong>Python</strong></td><td>ক্লিনিং, বিশ্লেষণ, অটোমেশন এবং ML</td><td>একটি অগোছালো ফাইল পরিষ্কার করা</td></tr>
+              <tr><td><strong>R</strong></td><td>পরিসংখ্যান এবং গবেষণামূলক বিশ্লেষণ</td><td>একটি পরিসংখ্যানগত পরীক্ষা চালানো</td></tr>
+              <tr><td><strong>Tableau / Power BI</strong></td><td>চার্ট এবং ড্যাশবোর্ড তৈরি</td><td>একটি সেলস ড্যাশবোর্ড তৈরি করা</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Role (পদবি)</th><th>Main focus (প্রধান কাজ)</th><th>Common tools</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Data analyst</strong></td><td>প্রশ্নের উত্তর খোঁজা, রিপোর্টিং করা</td><td>Excel, SQL, BI tools</td></tr>
+              <tr><td><strong>Business analyst</strong></td><td>ব্যবসায়িক চাহিদার সাথে ডেটা ও প্রক্রিয়ার সংযোগ</td><td>Excel, BI tools</td></tr>
+              <tr><td><strong>Data engineer</strong></td><td>ডেটা স্থানান্তর ও সংরক্ষণের সিস্টেম তৈরি (Data pipeline)</td><td>SQL, Python, cloud tools</td></tr>
+              <tr><td><strong>Data scientist</strong></td><td>বিশ্লেষণ এবং পূর্বাভাসমূলক মডেল তৈরি</td><td>Python or R, SQL</td></tr>
+              <tr><td><strong>Machine learning engineer</strong></td><td>মডেলগুলোকে বাস্তব পণ্যে যুক্ত করা</td><td>Python, cloud tools</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>শেখার যৌক্তিক ক্রম (৬টি ধাপ):</strong> ১. মৌলিক পরিসংখ্যান (Basic statistics), ২. Excel, ৩. SQL, ৪. একটি BI টুল, ৫. Python, ৬. ছোট ছোট প্রজেক্ট তৈরি করা।</p>
+
+        <h3>২. SQL কোড প্রদর্শনী (SQL Query Demonstration)</h3>
+        <div class="code-container">
+          <div class="code-header">
+            <span>SQL — Top 3 Customers by Spending</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copy Code</button>
+          </div>
+<pre><code>SELECT customer, SUM(amount) AS total_spent
+FROM orders
+GROUP BY customer
+ORDER BY total_spent DESC
+LIMIT 3;</code></pre>
+        </div>
+        <p><strong>ব্যাখ্যা ও সতর্কতা:</strong> <code>SELECT</code> প্রদর্শনের কলাম বেছে নেয়, <code>SUM(amount)</code> খরচ যোগ করে, <code>GROUP BY</code> প্রতি গ্রাহকের জন্য একটি সারি করে, <code>ORDER BY ... DESC</code> বড় থেকে ছোট সাজায় এবং <code>LIMIT 3</code> শীর্ষ ৩টি রাখে। নোট: <code>LIMIT</code> কাজ করে MySQL ও PostgreSQL-এ, কিন্তু <strong>SQL Server</strong> এর পরিবর্তে <code>TOP</code> ব্যবহার করে।</p>
+
+        <h3>৩. স্ব-মূল্যায়ন প্রশ্নোত্তর (Self-Assessment Questions)</h3>
+        <details class="qa-item"><summary>১. কোম্পানির ডেটাবেস থেকে ডেটা তুলে আনার জন্য কোন টুল ব্যবহার করবেন?</summary><div class="qa-ans">উত্তর: SQL।</div></details>
+        <details class="qa-item"><summary>২. ডেটা স্থানান্তর এবং সংরক্ষণের সিস্টেম তৈরি করেন কোন পদের ব্যক্তি?</summary><div class="qa-ans">উত্তর: একজন Data engineer।</div></details>
+        <details class="qa-item"><summary>৩. প্রথম ভাষা হিসেবে কেউ কেন R-এর পরিবর্তে Python বেছে নিতে পারেন?</summary><div class="qa-ans">উত্তর: এটি সাধারণ-উদ্দেশ্যের (general-purpose) ভাষা এবং অটোমেশন ও ML-এ ব্যাপকভাবে ব্যবহৃত হয়।</div></details>
+        <details class="qa-item"><summary>৪. SQL উদাহরণটিতে GROUP BY কী কাজ করে?</summary><div class="qa-ans">উত্তর: এটি সারিগুলোকে দলবদ্ধ করে যাতে প্রতিটি গ্রাহকের জন্য একটি করে ফলাফল পাওয়া যায়।</div></details>
+        <details class="qa-item"><summary>৫. কেবল চাকরির পদবি না দেখে কেন কাজের দায়িত্বগুলো (job duties) পড়া উচিত?</summary><div class="qa-ans">উত্তর: একই পদবি ভিন্ন ভিন্ন কোম্পানিতে ভিন্ন ধরনের কাজ নির্দেশ করতে পারে।</div></details>
+
+        <button class="complete-btn" onclick="toggleChapter(6, this)">✓ অধ্যায় ৬ সম্পন্ন হিসেবে চিহ্নিত করুন</button>
+      </section>
+
+      <!-- INTERACTIVE QUIZ SECTION -->
+      <section class="chapter-section" id="final-quiz">
+        <div class="chapter-header">
+          <h2>🎯 ইন্টারঅ্যাকটিভ চূড়ান্ত মূল্যায়ন (Interactive Final Quiz)</h2>
+          <p>সঠিক উত্তরে ক্লিক করে সাথে সাথে ফলাফল ও ব্যাখ্যা দেখে নিন:</p>
+        </div>
+
+        <div class="quiz-card">
+          <p><strong>১. ফোন নম্বর বা গ্রাহক আইডি সংখ্যার মতো দেখালেও এগুলো আসলে কী ধরনের ডেটা?</strong></p>
+          <div class="quiz-options">
+            <button onclick="checkQuiz(this, false, 'ভুল! ফোন নম্বরের গড় বা যোগফল অর্থহীন।')">Quantitative Continuous</button>
+            <button onclick="checkQuiz(this, true, 'সঠিক উত্তর! এগুলো কেবল পরিচয়চিহ্ন বা লেবেল (Qualitative / Nominal)।')">Qualitative (Label / Nominal)</button>
+            <button onclick="checkQuiz(this, false, 'ভুল! এটি বিগ ডেটা নয়।')">Big Data</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-card">
+          <p><strong>২. ১০০টি ইমেইলের মধ্যে ৫টি স্প্যাম। একটি অলস মডেল সব ইমেইলকে "Not Spam" বললে তার Accuracy 95% হলেও কোন মাপকাঠিটি 0% হবে?</strong></p>
+          <div class="quiz-options">
+            <button onclick="checkQuiz(this, true, 'সঠিক উত্তর! ৫টি প্রকৃত স্প্যামের ১টিও ধরতে না পারায় Recall হবে 0%।')">Recall (রিকল)</button>
+            <button onclick="checkQuiz(this, false, 'ভুল! এখানে সঠিক উত্তর হলো Recall।')">Mean (গড়)</button>
+            <button onclick="checkQuiz(this, false, 'ভুল! এটি ডেটা পাইপলাইন নয়।')">Data Pipeline</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-card">
+          <p><strong>৩. একটি ক্যাফে সকালের মন্দা কাটাতে একটি শিফট সন্ধ্যায় সরিয়ে ডেলিভারি চালুর সুপারিশ পেল। এটি কোন ধরনের অ্যানালিটিক্স?</strong></p>
+          <div class="quiz-options">
+            <button onclick="checkQuiz(this, false, 'ভুল! Descriptive কেবল কী ঘটেছে তা বলে।')">Descriptive Analytics</button>
+            <button onclick="checkQuiz(this, false, 'ভুল! Diagnostic কেবল কেন ঘটেছে তা খোঁজে।')">Diagnostic Analytics</button>
+            <button onclick="checkQuiz(this, true, 'সঠিক উত্তর! Prescriptive Analytics কী পদক্ষেপ নেওয়া উচিত তার সুপারিশ করে।')">Prescriptive Analytics</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </section>
+
+      <!-- SEARCHABLE GLOSSARY -->
+      <section class="chapter-section" id="glossary">
+        <div class="chapter-header">
+          <h2>📖 সার্চযোগ্য শব্দকোষ (Searchable Glossary)</h2>
+        </div>
+        <input type="text" id="glossary-input" class="glossary-search" placeholder="🔍 যেকোনো পরিভাষা খুঁজুন (যেমন: Overfitting, SQL, Recall, Outlier)..." onkeyup="filterGlossary()">
+        <div class="table-wrap">
+          <table id="glossary-table">
+            <thead><tr><th>Term (পরিভাষা)</th><th>Bangla Explanation (সহজ অর্থ)</th><th>Example (উদাহরণ)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Data</strong></td><td>লিপিবদ্ধ কাঁচা ঘটনা বা তথ্য (Raw recorded facts)</td><td>প্রাইস ট্যাগ, সেন্সর রিডিং</td></tr>
+              <tr><td><strong>Information</strong></td><td>প্রেক্ষাপট ও অর্থ যুক্ত করা ডেটা</td><td>১৪ মার্চ ১,৫০০ টাকায় ৩টি শার্ট বিক্রি</td></tr>
+              <tr><td><strong>Knowledge</strong></td><td>তথ্য থেকে গড়ে ওঠা উপলব্ধি যা সিদ্ধান্তে পথ দেখায়</td><td>ঈদের আগে বেশি শার্ট অর্ডার দেওয়া</td></tr>
+              <tr><td><strong>Outlier</strong></td><td>অন্য সব মান থেকে অনেক দূরের একটি মান</td><td>এক বারে ১,০০০টি শার্ট বিক্রি</td></tr>
+              <tr><td><strong>Model drift</strong></td><td>পৃথিবী বদলে যাওয়ার সাথে সাথে মডেলের কার্যকারিতা কমে যাওয়া</td><td>পুরনো কেনাকাটার অভ্যাস আর প্রযোজ্য না থাকা</td></tr>
+              <tr><td><strong>Correlation</strong></td><td>দুটি বিষয়ের একসাথে ওঠানামা করা (কার্যকারণ নয়)</td><td>গরম ও আইসক্রিম বিক্রি</td></tr>
+              <tr><td><strong>Overfitting</strong></td><td>ট্রেইনিং ডেটা অতিরিক্ত মুখস্থ করে নতুন ডেটায় ব্যর্থ হওয়া</td><td>পুরনো প্রশ্ন মুখস্থ করে নতুন প্রশ্নে আটকে যাওয়া</td></tr>
+              <tr><td><strong>Precision & Recall</strong></td><td>বিরল ঘটনার ক্ষেত্রে মডেল মূল্যায়নের দুটি মাপকাঠি</td><td>১০টি জালিয়াতির ৮টি ধরলে Recall ৮০%</td></tr>
+              <tr><td><strong>Data pipeline</strong></td><td>স্বয়ংক্রিয় ধাপ যা ডেটা স্থানান্তর ও আপডেট করে</td><td>প্রতি রাতে সেলস ডেটা আপডেট হওয়া</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer style="text-align:center;padding:2rem 1rem;color:var(--text-muted);border-top:1px solid var(--border);">
+        <p><strong>Written and Published by</strong><br>Ihtishamul Haque Naeem<br>Chairman, Seerat Academy Foundation</p>
+        <p style="margin-top:0.5rem;">Publishing Platform: <strong>Seerat Academy Foundation</strong> | Website: <a href="https://seeratfoundation.com/" target="_blank" rel="noopener">https://seeratfoundation.com/</a></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    const completedChapters = new Set();
+    function toggleChapter(num, btn) {
+      const dot = document.getElementById('dot-' + num);
+      if (completedChapters.has(num)) {
+        completedChapters.delete(num);
+        btn.classList.remove('completed');
+        btn.textContent = '✓ অধ্যায় ' + num + ' সম্পন্ন হিসেবে চিহ্নিত করুন';
+        if (dot) dot.classList.remove('done');
+      } else {
+        completedChapters.add(num);
+        btn.classList.add('completed');
+        btn.textContent = '✅ অধ্যায় ' + num + ' সম্পন্ন হয়েছে!';
+        if (dot) dot.classList.add('done');
+      }
+      const count = completedChapters.size;
+      document.getElementById('progress-text').textContent = 'অগ্রগতি: ' + count + '/6 অধ্যায়';
+      document.getElementById('progress-fill').style.width = ((count / 6) * 100) + '%';
+    }
+
+    function copyCode(btn) {
+      const code = btn.closest('.code-container').querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const old = btn.innerText;
+        btn.innerText = '✅ Copied!';
+        setTimeout(() => btn.innerText = old, 1800);
+      });
+    }
+
+    function checkQuiz(btn, isCorrect, msg) {
+      const card = btn.closest('.quiz-card');
+      const fb = card.querySelector('.quiz-feedback');
+      fb.textContent = msg;
+      fb.style.color = isCorrect ? '#15803d' : '#b91c1c';
+    }
+
+    function filterGlossary() {
+      const q = document.getElementById('glossary-input').value.toLowerCase();
+      const rows = document.querySelectorAll('#glossary-table tbody tr');
+      rows.forEach(r => {
+        r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
